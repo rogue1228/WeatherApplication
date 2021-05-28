@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation Deps.kotlinSTDLib
+
+    implementation Deps.rxJava3
+    implementation Deps.gson
+
+    testImplementation Deps.testKotlinJDK8
+    testImplementation Deps.testKotlin
+    testImplementation Deps.testKotlinJunit
+}

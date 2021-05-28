@@ -1,0 +1,23 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation project(':domain')
+
+    implementation Deps.kotlinSTDLib
+
+    implementation Deps.retrofit2
+    implementation Deps.retrofit2RxJavaAdapter
+    implementation Deps.retrofit2GsonConverter
+
+    testImplementation Deps.testKotlinJDK8
+    testImplementation Deps.testKotlin
+    testImplementation Deps.testKotlinJunit
+}
