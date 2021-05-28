@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="locWeather"
+            type="com.junhwa.domain.model.LocationWeather" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/localText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{locWeather.title}"
+            tools:text="Seoul"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/todayLayout"
+            app:layout_constraintHorizontal_weight="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/todayLayout"
+            app:layout_constraintStart_toEndOf="@+id/localText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/todayLayout"
+            layout="@layout/weather_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tomorrowLayout"
+            app:layout_constraintHorizontal_weight="0.44"
+            app:layout_constraintStart_toEndOf="@+id/localText"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:weather="@{locWeather.todayWeather()}" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tomorrowLayout"
+            app:layout_constraintStart_toEndOf="@+id/todayLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/tomorrowLayout"
+            layout="@layout/weather_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="0.44"
+            app:layout_constraintStart_toEndOf="@+id/todayLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:weather="@{locWeather.tomorrowWeather()}">
+
+
+        </include>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
