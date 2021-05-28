@@ -1,20 +1,23 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion BuildVersions.compileSdkVersion
+    buildToolsVersion BuildVersions.buildToolsVersion
 
     defaultConfig {
         applicationId "com.junhwa.weatherapplication"
-        minSdkVersion 23
-        targetSdkVersion 30
+        minSdkVersion BuildVersions.minSdkVersion
+        targetSdkVersion BuildVersions.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_API_URL", "\"${BuildConfig.BASE_API_URL}\""
     }
 
     buildTypes {
@@ -30,9 +33,16 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
+    implementation project(":domain")
+    implementation project(":data")
+
     implementation Deps.kotlinSTDLib
     implementation Deps.jetPackCore
     implementation Deps.appCompat
@@ -43,6 +53,10 @@ dependencies {
     implementation Deps.swipeRefreshLayout
 
     implementation Deps.rxAndroid3
+
+    implementation Deps.koin
+
+    testImplementation Deps.testKoin
 
     testImplementation Deps.testJunit
     androidTestImplementation Deps.testAndroidJunit

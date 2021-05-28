@@ -10,15 +10,11 @@ object Versions {
     const val koin = "2.2.2"
     const val glide = "4.12.0"
     const val swipeRefreshLayout = "1.1.0"
-    const val paging = "3.0.0"
-    const val navigation = "2.3.5"
     const val lifecycle = "2.3.1"
     const val jetPack = "1.3.2"
     const val appCompat = "1.2.0"
     const val material = "1.3.0"
     const val constraintLayout = "2.0.4"
-    const val vectorDrawable = "1.1.0"
-
     const val gson = "2.8.7"
 
     const val junit = "4.+"
@@ -61,6 +57,11 @@ object Deps {
     // glide lib
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+
+    // koin lib
+    const val koin = "io.insert-koin:koin-android-viewmodel:${Versions.koin}"
+    const val koinGradlePlugin = "io.insert-koin:koin-gradle-plugin:${Versions.koin}"
+    const val testKoin = "io.insert-koin:koin-test:${Versions.koin}"
 
     // network monitor lib
     const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chunkVersions}"
