@@ -75,7 +75,7 @@ object Deps {
 }
 
 object BuildConfig {
-    const val BASE_API_URL = "https://www.metaweather.com/api/"
+    const val BASE_API_URL = "https://www.metaweather.com/"
 }
 
 object BuildVersions {

@@ -16,6 +16,6 @@ data class Weather(
     val date: LocalDate
 ) {
     fun iconImageURL() : String {
-        return "static/img/weather/png/$iconImage.png"
+        return "/static/img/weather/png/$iconImage.png"
     }
 }

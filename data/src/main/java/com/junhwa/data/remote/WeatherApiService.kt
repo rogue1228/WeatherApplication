@@ -9,9 +9,9 @@ import retrofit2.http.Query
 
 interface WeatherApiService {
 
-    @GET("location/search")
+    @GET("/api/location/search")
     fun searchLocation(@Query("query") keyword: String): Single<List<Location>>
 
-    @GET("location/{woeid}")
+    @GET("/api/location/{woeid}")
     fun getLocalWeather(@Path("woeid") woeid: Int): Single<LocationWeather>
 }
