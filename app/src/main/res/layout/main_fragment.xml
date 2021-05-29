@@ -29,16 +29,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:onRefreshListener="@{() -> dataBinder.loadData()}"
-            app:refreshing="@{dataBinder.isLoading()}">
+            app:layout_constraintTop_toBottomOf="@+id/title">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/weatherRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:add_item="@{dataBinder.weatherData}"
-                app:item_clear="@{dataBinder.isLoading()}"
                 tools:listitem="@layout/item_weather" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

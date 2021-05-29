@@ -9,8 +9,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 
 class MainViewModel(private val weatherRepo: WeatherRepository) : ViewModel(), MainDataBinder {
-    private val _weatherData: MutableLiveData<LocationWeather> = MutableLiveData()
-    override val weatherData: LiveData<LocationWeather> = _weatherData
+    private val _weatherData: MutableLiveData<List<LocationWeather>> = MutableLiveData()
+    override val weatherData: LiveData<List<LocationWeather>> = _weatherData
 
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     override val isLoading: LiveData<Boolean> = _isLoading
@@ -19,12 +19,11 @@ class MainViewModel(private val weatherRepo: WeatherRepository) : ViewModel(), M
 
     override fun loadData() {
         _isLoading.value = true
-
         weatherDisposable = weatherRepo.loadWeatherData()
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                _weatherData.value = it
-                _isLoading.value = false
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { data, error ->
+                _isLoading.postValue(false)
+                _weatherData.postValue(data)
             }
     }
 

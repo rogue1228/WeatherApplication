@@ -9,25 +9,10 @@ import com.junhwa.domain.model.LocationWeather
 import com.junhwa.weatherapplication.BuildConfig
 import com.junhwa.weatherapplication.ui.main.WeatherAdapter
 
-@BindingAdapter("add_item")
-fun addItem(recyclerView: RecyclerView, locWeather: LocationWeather?) {
-    locWeather?.let {
-        (recyclerView.adapter as? WeatherAdapter)?.addItem(it)
-    }
-}
-
-@BindingAdapter("item_clear")
-fun clearItem(recyclerView: RecyclerView, refreshing: Boolean?) {
-    if (refreshing == true) {
-        (recyclerView.adapter as? WeatherAdapter)?.clear()
-    }
-}
-
-@BindingAdapter("load_image")
+@BindingAdapter("app:load_image")
 fun loadImage(imageView: ImageView, imageUrl: String?) {
-    val url = Uri.Builder()
-        .authority(BuildConfig.BASE_API_URL)
-        .appendPath(imageUrl)
+    val url = Uri.parse(BuildConfig.BASE_API_URL).buildUpon()
+        .appendEncodedPath(imageUrl)
         .build()
 
     Glide.with(imageView)

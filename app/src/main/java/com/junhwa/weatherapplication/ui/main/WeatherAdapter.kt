@@ -14,8 +14,8 @@ class WeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val list: MutableList<LocationWeather> = mutableListOf()
 
-    fun addItem(locWeather: LocationWeather) {
-        list.add(locWeather)
+    fun addItems(locWeatherList: List<LocationWeather>) {
+        list.addAll(locWeatherList)
         notifyDataSetChanged()
     }
 
