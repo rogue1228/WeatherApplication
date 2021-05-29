@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <TextView
             android:id="@+id/localText"
             android:layout_width="0dp"
@@ -31,7 +30,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/divider_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/todayLayout"
@@ -53,7 +52,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/divider_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tomorrowLayout"
@@ -70,10 +69,7 @@
             app:layout_constraintHorizontal_weight="0.44"
             app:layout_constraintStart_toEndOf="@+id/todayLayout"
             app:layout_constraintTop_toTopOf="parent"
-            bind:weather="@{locWeather.tomorrowWeather()}">
-
-
-        </include>
+            bind:weather="@{locWeather.tomorrowWeather()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

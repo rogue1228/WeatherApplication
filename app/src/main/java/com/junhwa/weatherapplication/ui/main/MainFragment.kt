@@ -1,13 +1,14 @@
 package com.junhwa.weatherapplication.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.junhwa.weatherapplication.R
 import com.junhwa.weatherapplication.databinding.MainFragmentBinding
 import org.koin.android.viewmodel.ext.android.getSharedViewModel
@@ -35,8 +36,6 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
-        binding.dataBinder = viewModel
         initViews()
         initViewModel()
     }
@@ -45,6 +44,10 @@ class MainFragment : Fragment() {
         binding.weatherRecyclerView.also {
             it.adapter = adapter
             it.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+            context?.let { context ->
+                it.addItemDecoration(WeatherDecoration(context, LinearLayoutManager.VERTICAL))
+            }
         }
 
         binding.swipeRefreshLayout.setOnRefreshListener {

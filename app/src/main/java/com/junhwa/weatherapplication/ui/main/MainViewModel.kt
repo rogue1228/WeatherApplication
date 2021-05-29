@@ -8,16 +8,16 @@ import com.junhwa.domain.repository.WeatherRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 
-class MainViewModel(private val weatherRepo: WeatherRepository) : ViewModel(), MainDataBinder {
+class MainViewModel(private val weatherRepo: WeatherRepository) : ViewModel() {
     private val _weatherData: MutableLiveData<List<LocationWeather>> = MutableLiveData()
-    override val weatherData: LiveData<List<LocationWeather>> = _weatherData
+    val weatherData: LiveData<List<LocationWeather>> = _weatherData
 
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    override val isLoading: LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private var weatherDisposable: Disposable? = null
 
-    override fun loadData() {
+    fun loadData() {
         _isLoading.value = true
         weatherDisposable = weatherRepo.loadWeatherData()
             .observeOn(AndroidSchedulers.mainThread())
