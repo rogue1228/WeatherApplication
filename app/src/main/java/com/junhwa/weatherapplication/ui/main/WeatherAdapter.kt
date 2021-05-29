@@ -21,6 +21,7 @@ class WeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun clear() {
         list.clear()
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

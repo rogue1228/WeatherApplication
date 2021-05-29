@@ -51,8 +51,8 @@ class MainFragment : Fragment() {
         }
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.loadData()
             adapter.clear()
+            viewModel.loadData()
         }
 
     }
