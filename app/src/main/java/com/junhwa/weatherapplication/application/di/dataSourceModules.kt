@@ -19,7 +19,7 @@ val dataSourceModule = module {
 
     single<RemoteDataSource> {
         RemoteDataSourceImpl(
-            BuildConfig.BASE_API_URL,
+            getProperty("base_url"),
             listOf(
                 ChuckerInterceptor.Builder(get())
                     .maxContentLength(250_000L)
