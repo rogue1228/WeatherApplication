@@ -50,21 +50,18 @@ class MainFragment : Fragment() {
             }
         }
 
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            adapter.clear()
-            viewModel.loadData()
-        }
-
     }
 
     private fun initViewModel() {
         viewModel.weatherData.observe(viewLifecycleOwner) {
-            adapter.addItems(it)
+            binding.weatherList = it
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.swipeRefreshLayout.isRefreshing = it
+            binding.refreshing = it
         }
+
+        binding.viewModel = viewModel
 
         viewModel.loadData()
     }

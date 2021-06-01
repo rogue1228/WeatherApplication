@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="weatherList"
+            type="List&lt;LocationWeather&gt;" />
+
+        <variable
+            name="refreshing"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.junhwa.weatherapplication.ui.main.MainViewModel" />
+
+        <import type="java.util.List"/>
+        <import type="com.junhwa.domain.model.LocationWeather"/>
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -26,12 +44,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:refreshing="@{refreshing}"
+            app:onRefreshListener="@{() -> viewModel.loadData()}"
             app:layout_constraintTop_toBottomOf="@+id/title">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/weatherRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                bind:add_item="@{weatherList}"
+                bind:item_clear="@{refreshing}"
                 tools:listitem="@layout/item_weather" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
