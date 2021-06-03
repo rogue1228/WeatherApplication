@@ -54,7 +54,7 @@ class MainFragment : Fragment() {
 
     private fun initViewModel() {
         viewModel.weatherData.observe(viewLifecycleOwner) {
-            binding.weatherList = it
+            binding.weatherData = it
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {

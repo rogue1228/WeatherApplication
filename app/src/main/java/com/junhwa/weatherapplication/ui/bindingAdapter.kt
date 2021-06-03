@@ -10,9 +10,9 @@ import com.junhwa.weatherapplication.BuildConfig
 import com.junhwa.weatherapplication.ui.main.WeatherAdapter
 
 @BindingAdapter("bind:add_item")
-fun addItem(recyclerView: RecyclerView, locWeather: List<LocationWeather>?) {
+fun addItem(recyclerView: RecyclerView, locWeather: LocationWeather?) {
     locWeather?.let {
-        (recyclerView.adapter as? WeatherAdapter)?.addItems(it)
+        (recyclerView.adapter as? WeatherAdapter)?.addItem(it)
     }
 }
 

@@ -3,6 +3,7 @@ package com.junhwa.weatherapplication.ui.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.junhwa.domain.model.LocationWeather
 import com.junhwa.weatherapplication.R
@@ -12,15 +13,19 @@ class WeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val typeHeader = 0
     private val typeItem = 1
 
-    private val list: MutableList<LocationWeather> = mutableListOf()
+    private var list: List<LocationWeather> = emptyList()
 
-    fun addItems(locWeatherList: List<LocationWeather>) {
-        list.addAll(locWeatherList)
-        notifyDataSetChanged()
+    fun addItem(locWeather: LocationWeather) {
+        val newList = list.toMutableList()
+        newList.add(locWeather)
+
+        val diffResult = DiffUtil.calculateDiff(weatherDiffCallback(list, newList))
+        list = newList
+        diffResult.dispatchUpdatesTo(this)
     }
 
     fun clear() {
-        list.clear()
+        list = emptyList()
         notifyDataSetChanged()
     }
 

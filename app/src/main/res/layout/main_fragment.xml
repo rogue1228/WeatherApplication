@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="weatherList"
-            type="List&lt;LocationWeather&gt;" />
+            name="weatherData"
+            type="LocationWeather" />
 
         <variable
             name="refreshing"
@@ -15,7 +15,6 @@
             name="viewModel"
             type="com.junhwa.weatherapplication.ui.main.MainViewModel" />
 
-        <import type="java.util.List"/>
         <import type="com.junhwa.domain.model.LocationWeather"/>
     </data>
 
@@ -52,7 +51,7 @@
                 android:id="@+id/weatherRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                bind:add_item="@{weatherList}"
+                bind:add_item="@{weatherData}"
                 bind:item_clear="@{refreshing}"
                 tools:listitem="@layout/item_weather" />
 
