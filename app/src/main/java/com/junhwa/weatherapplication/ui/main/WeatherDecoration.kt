@@ -35,27 +35,11 @@ class WeatherDecoration(
         outRect.set(dividerHeight, 0, dividerHeight, 0)
     }
 
-
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
 
-        if (orientation == LinearLayoutManager.HORIZONTAL) {
-            horizontal(c, parent)
-        } else {
+        if (orientation == LinearLayoutManager.VERTICAL) {
             vertical(c, parent)
-        }
-    }
-
-    private fun horizontal(c: Canvas, parent: RecyclerView) {
-        val top = parent.paddingTop
-        val bottom = parent.height - parent.paddingBottom
-
-        parent.children.forEach { child ->
-            val params = child
-                .layoutParams as RecyclerView.LayoutParams
-            val left = child.right + params.rightMargin
-            val right = child.left + dividerHeight
-            c.drawRect(left.toFloat(), top.toFloat(), right.toFloat(), bottom.toFloat(), paint)
         }
     }
 
@@ -66,11 +50,12 @@ class WeatherDecoration(
         val childCount = parent.childCount
 
         parent.children.forEachIndexed { index, child ->
-            val top = child.top + dividerHeight
+            val translationY: Int = (child.translationY + 0.5f).toInt()
+            val top = child.top + dividerHeight + translationY
             val bottom = if (index == childCount -1) {
-                child.bottom
+                child.bottom + translationY
             } else {
-                child.bottom + dividerHeight
+                child.bottom + dividerHeight + translationY
             }
 
             c.drawRect(left.toFloat(), top.toFloat(), right.toFloat(), bottom.toFloat(), paint)
