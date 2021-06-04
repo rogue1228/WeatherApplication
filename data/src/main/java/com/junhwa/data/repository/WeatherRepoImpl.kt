@@ -16,4 +16,11 @@ class WeatherRepoImpl(private val remoteDataSource: RemoteDataSource): WeatherRe
                 remoteDataSource.loadLocationWeather(it.woeid)
             }
     }
+
+    override fun loadWeatherDataList(keyword: String): Single<List<LocationWeather>> {
+        return remoteDataSource.loadLocation(keyword)
+            .map {
+                it.map { loc -> remoteDataSource.loadLocationWeather(loc.woeid).blockingGet() }
+            }
+    }
 }

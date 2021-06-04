@@ -6,4 +6,5 @@ import io.reactivex.rxjava3.core.Single
 
 interface WeatherRepository {
     fun loadWeatherData(keyword: String): Observable<LocationWeather>
+    fun loadWeatherDataList(keyword: String): Single<List<LocationWeather>>
 }
