@@ -16,10 +16,10 @@ fun weatherDiffCallback(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldWeatherList[oldItemPosition].hashCode() == newWeatherList[newItemPosition].hashCode()
+        return oldWeatherList[oldItemPosition].woeid == newWeatherList[newItemPosition].woeid
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldWeatherList[oldItemPosition] == newWeatherList[newItemPosition]
+        return oldWeatherList[oldItemPosition].hashCode() == newWeatherList[newItemPosition].hashCode()
     }
 }
